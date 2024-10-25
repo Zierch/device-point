@@ -3,4 +3,14 @@
     <string name="device_point_logo">Device Point Logo</string>
     <string name="txt_sign_in">Sign In</string>
     <string name="txt_sign_up">Sign Up</string>
+
+    <array name="kategori">
+        <item>Pilih Kategori Barang</item>
+        <item>Laptop</item>
+        <item>Smartphone</item>
+        <item>Monitor</item>
+        <item>Router</item>
+        <item>Printer</item>
+        <item>Aksesoris</item>
+    </array>
 </resources>

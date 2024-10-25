@@ -81,7 +81,6 @@
         android:layout_below="@id/linear1"
         android:layout_marginTop="40dp"
         android:background="@drawable/box_button"
-
         android:text="@string/txt_sign_up"
         android:textSize="18dp"
         android:textStyle="bold" />

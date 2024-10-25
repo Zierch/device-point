@@ -1,6 +1,8 @@
 package com.example.aplikasi_katalog.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aplikasi_katalog.SQLiteHelper;
 import com.example.aplikasi_katalog.databinding.ActivitySignInBinding;
+import com.example.aplikasi_katalog.ui.Admin.HomeActivity;
 
 
 public class SignInActivity extends AppCompatActivity {
@@ -63,6 +66,13 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        
+        binding.tvForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(SignInActivity.this, "404, Belum dibuat !", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void check() {
@@ -86,18 +96,36 @@ public class SignInActivity extends AppCompatActivity {
             binding.btnSign.setEnabled(true);
         } else {
             signIn();
+
+//            save ke sharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("username", username);
+            editor.putString("password", password);
+            editor.apply();
         }
     }
 
     private void signIn() {
         boolean isValid = dbHelper.checkUser(username, password);
+        boolean isAdmin = dbHelper.isAdmin(username, password);
+//        save untuk admin
+        SharedPreferences sharedPreferences = getSharedPreferences("IsAdmin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isAdmin", isAdmin);
+        editor.apply();
+        Intent intent = null;
 
         if (isValid) {
             // Jika valid, arahkan ke halaman berikutnya
             Toast.makeText(SignInActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignInActivity.this, KategoriActivity.class); // Ganti dengan activity tujuan setelah login
+            if (isAdmin){
+                intent = new Intent(SignInActivity.this, HomeActivity.class);
+            } else {
+                intent = new Intent(SignInActivity.this, KategoriActivity.class);
+            }
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            intent.setFlags()
             finish();
         } else {
             // Jika tidak valid, tampilkan pesan error

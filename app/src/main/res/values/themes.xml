@@ -2,6 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AplikasiKatalog" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
 
         <item name="colorPrimary">@color/md_theme_primary</item>
@@ -59,6 +61,7 @@
     <style name="NavTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">20dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textColor">@color/md_theme_black</item>
     </style>
 

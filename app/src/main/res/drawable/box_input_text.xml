@@ -10,7 +10,7 @@
     <item android:bottom="3dp">
         <shape
             android:shape="rectangle">
-            <solid android:color="@color/md_theme_onSecondary"/>
+            <solid android:color="@color/md_theme_background"/>
             <corners android:radius="10dp"/>
         </shape>
     </item>

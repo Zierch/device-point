@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Admin.FormProduk">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/md_theme_primaryContainer"
+        app:navigationIcon="@drawable/ic_arrow_left"
+        app:title="Form Tambah Produk"
+        app:titleTextAppearance="@style/NavTitle"></androidx.appcompat.widget.Toolbar>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:columnCount="1"
+        android:padding="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_item_category">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/cam"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/camera" />
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Kategori :"
+                android:textColor="@color/md_theme_black"
+                android:textSize="17dp" />
+
+            <Spinner
+                android:id="@+id/kategori"
+                android:padding="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/box_outline"
+                android:entries="@array/kategori" />
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundMode="outline"
+            app:boxCollapsedPaddingTop="0dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/namaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Produk"
+                android:inputType="text"
+                android:padding="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundMode="outline"
+            android:layout_marginTop="5dp"
+            app:boxCollapsedPaddingTop="0dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/hargaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Harga Produk"
+                android:inputType="number"
+                android:padding="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundMode="outline"
+            app:boxCollapsedPaddingTop="0dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/merekProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Merek Produk"
+                android:inputType="text"
+                android:padding="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxBackgroundColor="@color/md_theme_white"
+                app:boxBackgroundMode="outline"
+                app:boxCollapsedPaddingTop="0dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/garansi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Garansi (Bulan)"
+                    android:inputType="number"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:boxBackgroundColor="@color/md_theme_white"
+                app:boxBackgroundMode="outline"
+                app:boxCollapsedPaddingTop="0dp"
+                app:boxCornerRadiusBottomEnd="5dp"
+                app:boxCornerRadiusBottomStart="5dp"
+                app:boxCornerRadiusTopEnd="5dp"
+                app:boxCornerRadiusTopStart="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/stok"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Stok"
+                    android:inputType="number"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundMode="outline"
+            app:boxCollapsedPaddingTop="0dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            android:layout_marginTop="5dp"
+            app:boxCornerRadiusTopStart="5dp"
+            app:counterEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/deskripsi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Deskripsi"
+                android:inputType="text"
+                android:padding="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/box_button"
+            android:text="Simpan"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+    </GridLayout>
+
+</RelativeLayout>
