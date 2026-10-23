@@ -33,7 +33,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_PRODUCTS);
 
 //        set admin
-        insertUser(db, SEED_ADMIN_USER, SEED_ADMIN_PASSWORD, true);
+        insertUserWithHash(db, SEED_ADMIN_USER, SEED_ADMIN_PASSWORD, true);
     }
 
     // Method untuk mengubah database (jika versi di-upgrade)
@@ -52,7 +52,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         boolean adminMissing = cursor.getCount() == 0;
         cursor.close();
         if (adminMissing) {
-            insertUser(db, SEED_ADMIN_USER, SEED_ADMIN_PASSWORD, true);
+            insertUserWithHash(db, SEED_ADMIN_USER, SEED_ADMIN_PASSWORD, true);
         }
     }
 
@@ -70,7 +70,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             String username = cursor.getString(0);
             String plainPassword = cursor.getString(1);
             if (username != null && plainPassword != null) {
-                insertUser(db, username, plainPassword, SEED_ADMIN_USER.equals(username));
+                insertUserWithHash(db, username, plainPassword, SEED_ADMIN_USER.equals(username));
             }
         }
         cursor.close();
@@ -80,11 +80,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public void insertUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
-        insertUser(db, username, password, SEED_ADMIN_USER.equals(username));
+        insertUserWithHash(db, username, password, false);
         db.close();
     }
 
-    private void insertUser(SQLiteDatabase db, String username, String password, boolean isAdmin) {
+    private void insertUserWithHash(SQLiteDatabase db, String username, String password, boolean isAdmin) {
         ContentValues values = new ContentValues();
         values.put("username", username);
         values.put("password_hash", PasswordHasher.hash(password));
