@@ -34,6 +34,10 @@ public class FormProduk extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!isCurrentUserAdmin()) {
+            finish();
+            return;
+        }
         binding = FormTambahProdukBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initView();
@@ -55,6 +59,12 @@ public class FormProduk extends AppCompatActivity {
             binding.cam.setVisibility(View.GONE);
             binding.image.setImageURI(imageUri);  // Preview image in ImageView
         }
+    }
+
+    /** Pintu admin tetap terkunci kecuali akun yang login memang admin di database. */
+    private boolean isCurrentUserAdmin() {
+        String username = getSharedPreferences("DataUser", MODE_PRIVATE).getString("username", "");
+        return !username.isEmpty() && new SQLiteHelper(this).isAdmin(username);
     }
 
     private void initView(){

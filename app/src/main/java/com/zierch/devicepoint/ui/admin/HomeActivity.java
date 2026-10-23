@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.zierch.devicepoint.Helper;
+import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.ActivityHomeBinding;
 import com.zierch.devicepoint.ui.ContactActivity;
 import com.zierch.devicepoint.ui.KategoriActivity;
@@ -23,9 +24,19 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!isCurrentUserAdmin()) {
+            finish();
+            return;
+        }
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         initView();
+    }
+
+    /** Pintu admin tetap terkunci kecuali akun yang login memang admin di database. */
+    private boolean isCurrentUserAdmin() {
+        String username = getSharedPreferences("DataUser", MODE_PRIVATE).getString("username", "");
+        return !username.isEmpty() && new SQLiteHelper(this).isAdmin(username);
     }
 
     private void initView() {
