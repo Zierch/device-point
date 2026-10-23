@@ -47,7 +47,7 @@ final class PasswordHasher {
             return false;
         }
         String[] parts = stored.split("\\$");
-        if (parts.length != 4) {
+        if (parts.length != 4 || !isSupported(parts[0])) {
             return false;
         }
         try {
@@ -69,12 +69,21 @@ final class PasswordHasher {
         }
     }
 
+    private static boolean isSupported(String algorithm) {
+        return SHA256.equals(algorithm) || SHA1.equals(algorithm);
+    }
+
     private static byte[] derive(String algorithm, String password, byte[] salt, int iterations) {
+        if (!isSupported(algorithm)) {
+            throw new IllegalStateException("Unsupported hash: " + algorithm);
+        }
+        PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, HASH_BITS);
         try {
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt, iterations, HASH_BITS);
             return SecretKeyFactory.getInstance(algorithm).generateSecret(spec).getEncoded();
         } catch (GeneralSecurityException e) {
             throw new IllegalStateException("PBKDF2 unavailable: " + algorithm, e);
+        } finally {
+            spec.clearPassword();
         }
     }
 
