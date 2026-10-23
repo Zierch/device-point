@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Aplikasi-Katalog"
+rootProject.name = "Device-Point"
 include(":app")

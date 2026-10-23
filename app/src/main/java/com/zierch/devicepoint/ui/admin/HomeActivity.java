@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui.Admin;
+package com.zierch.devicepoint.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,10 +10,10 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aplikasi_katalog.Helper;
-import com.example.aplikasi_katalog.databinding.ActivityHomeBinding;
-import com.example.aplikasi_katalog.ui.ContactActivity;
-import com.example.aplikasi_katalog.ui.KategoriActivity;
+import com.zierch.devicepoint.Helper;
+import com.zierch.devicepoint.databinding.ActivityHomeBinding;
+import com.zierch.devicepoint.ui.ContactActivity;
+import com.zierch.devicepoint.ui.KategoriActivity;
 
 public class HomeActivity extends AppCompatActivity {
     protected ActivityHomeBinding binding;

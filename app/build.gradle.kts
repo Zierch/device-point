@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.aplikasi_katalog"
+    namespace = "com.zierch.devicepoint"
     compileSdk = 34
 
     viewBinding { enable = true }
 
     defaultConfig {
-        applicationId = "com.example.aplikasi_katalog"
+        applicationId = "com.zierch.devicepoint"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

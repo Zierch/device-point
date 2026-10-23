@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui;
+package com.zierch.devicepoint.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +11,9 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.aplikasi_katalog.SQLiteHelper;
-import com.example.aplikasi_katalog.databinding.ActivitySignInBinding;
-import com.example.aplikasi_katalog.ui.Admin.HomeActivity;
+import com.zierch.devicepoint.SQLiteHelper;
+import com.zierch.devicepoint.databinding.ActivitySignInBinding;
+import com.zierch.devicepoint.ui.admin.HomeActivity;
 
 
 public class SignInActivity extends AppCompatActivity {

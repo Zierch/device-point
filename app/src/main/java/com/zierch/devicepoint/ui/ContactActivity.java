@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui;
+package com.zierch.devicepoint.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.aplikasi_katalog.databinding.ActivityContactBinding;
+import com.zierch.devicepoint.databinding.ActivityContactBinding;
 
 public class ContactActivity extends AppCompatActivity {
     protected ActivityContactBinding binding;

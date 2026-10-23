@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog;
+package com.zierch.devicepoint;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.aplikasi_katalog.databinding.FormTambahProdukBinding;
-import com.example.aplikasi_katalog.databinding.ItemListProdukBinding;
-import com.example.aplikasi_katalog.ui.Admin.FormProduk;
+import com.zierch.devicepoint.databinding.FormTambahProdukBinding;
+import com.zierch.devicepoint.databinding.ItemListProdukBinding;
+import com.zierch.devicepoint.ui.admin.FormProduk;
 
 import java.io.File;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui;
+package com.zierch.devicepoint.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aplikasi_katalog.ListProdukAdapter;
-import com.example.aplikasi_katalog.R;
-import com.example.aplikasi_katalog.SQLiteHelper;
-import com.example.aplikasi_katalog.databinding.ActivityListProdukBinding;
+import com.zierch.devicepoint.ListProdukAdapter;
+import com.zierch.devicepoint.R;
+import com.zierch.devicepoint.SQLiteHelper;
+import com.zierch.devicepoint.databinding.ActivityListProdukBinding;
 
 import java.util.ArrayList;
 import java.util.List;

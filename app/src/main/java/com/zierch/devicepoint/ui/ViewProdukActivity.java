@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui;
+package com.zierch.devicepoint.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.example.aplikasi_katalog.Helper;
-import com.example.aplikasi_katalog.databinding.ActivityViewProdukBinding;
+import com.zierch.devicepoint.Helper;
+import com.zierch.devicepoint.databinding.ActivityViewProdukBinding;
 
 import java.io.File;
 

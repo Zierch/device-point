@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog;
+package com.zierch.devicepoint;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.aplikasi_katalog", appContext.getPackageName());
+        assertEquals("com.zierch.devicepoint", appContext.getPackageName());
     }
 }

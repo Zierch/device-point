@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AplikasiKatalog" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Base.Theme.DevicePoint" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -71,5 +71,5 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
-    <style name="Theme.AplikasiKatalog" parent="Base.Theme.AplikasiKatalog" />
+    <style name="Theme.DevicePoint" parent="Base.Theme.DevicePoint" />
 </resources>

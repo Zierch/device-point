@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog;
+package com.zierch.devicepoint;
 
 import android.content.Context;
 import android.content.Intent;

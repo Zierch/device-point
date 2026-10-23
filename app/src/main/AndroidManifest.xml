@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AplikasiKatalog"
+        android:theme="@style/Theme.DevicePoint"
         tools:targetApi="31">
         <activity
             android:name=".ui.SplashScreenActivity"
@@ -23,14 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.aplikasi_katalog.ui.SignInActivity" />
-        <activity android:name="com.example.aplikasi_katalog.ui.SignUpActivity" />
-        <activity android:name="com.example.aplikasi_katalog.ui.KategoriActivity" />
-        <activity android:name="com.example.aplikasi_katalog.ui.ListProdukActivity" />
-        <activity android:name="com.example.aplikasi_katalog.ui.ContactActivity" />
-        <activity android:name="com.example.aplikasi_katalog.ui.ViewProdukActivity" />
-        <activity android:name="com.example.aplikasi_katalog.ui.Admin.FormProduk" />
-        <activity android:name="com.example.aplikasi_katalog.ui.Admin.HomeActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.SignInActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.SignUpActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.KategoriActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.ListProdukActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.ContactActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.ViewProdukActivity" />
+        <activity android:name="com.zierch.devicepoint.ui.admin.FormProduk" />
+        <activity android:name="com.zierch.devicepoint.ui.admin.HomeActivity" />
     </application>
 
 </manifest>

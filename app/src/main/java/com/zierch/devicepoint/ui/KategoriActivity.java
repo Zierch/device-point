@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui;
+package com.zierch.devicepoint.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.aplikasi_katalog.Helper;
-import com.example.aplikasi_katalog.R;
-import com.example.aplikasi_katalog.databinding.ActivityKategoriBinding;
+import com.zierch.devicepoint.Helper;
+import com.zierch.devicepoint.R;
+import com.zierch.devicepoint.databinding.ActivityKategoriBinding;
 
 public class KategoriActivity extends AppCompatActivity {
     protected ActivityKategoriBinding binding;

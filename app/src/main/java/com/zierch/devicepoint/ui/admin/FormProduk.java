@@ -1,4 +1,4 @@
-package com.example.aplikasi_katalog.ui.Admin;
+package com.zierch.devicepoint.ui.admin;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.example.aplikasi_katalog.SQLiteHelper;
-import com.example.aplikasi_katalog.databinding.FormTambahProdukBinding;
+import com.zierch.devicepoint.SQLiteHelper;
+import com.zierch.devicepoint.databinding.FormTambahProdukBinding;
 
 import java.io.File;
 import java.io.FileOutputStream;
