@@ -25,7 +25,7 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
     private List<Object[]> itemList;
     private OnItemClickListener listener;
     private SQLiteHelper dbHelper;
-    private String username, password;
+    private String username;
 
 
     public ListProdukAdapter(List<Object[]> itemList, OnItemClickListener listener, Context context) {
@@ -36,7 +36,6 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
         //    ambil data dari sharedPreferences
         SharedPreferences sharedPreferences = context.getSharedPreferences("DataUser", Context.MODE_PRIVATE);
         username = sharedPreferences.getString("username", "");
-        password = sharedPreferences.getString("password", "");
     }
 
     @NonNull
@@ -59,7 +58,7 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
         holder.binding.namaProduk.setText(namaProduk);
         holder.binding.hargaProduk.setText(Helper.currencyID(hargaProduk));
 
-        boolean isAdmin = dbHelper.isAdmin(username, password);
+        boolean isAdmin = dbHelper.isAdmin(username);
         if (isAdmin){
             holder.binding.edit.setOnClickListener(new View.OnClickListener() {
                 @Override

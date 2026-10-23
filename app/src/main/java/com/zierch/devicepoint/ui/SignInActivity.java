@@ -97,18 +97,18 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             signIn();
 
-//            save ke sharedPreferences
+//            simpan username saja; password tidak pernah ditulis ke SharedPreferences
             SharedPreferences sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username", username);
-            editor.putString("password", password);
+            editor.remove("password"); // bersihkan sisa password dari versi lama
             editor.apply();
         }
     }
 
     private void signIn() {
         boolean isValid = dbHelper.checkUser(username, password);
-        boolean isAdmin = dbHelper.isAdmin(username, password);
+        boolean isAdmin = dbHelper.isAdmin(username);
 //        save untuk admin
         SharedPreferences sharedPreferences = getSharedPreferences("IsAdmin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -11,7 +11,16 @@ import java.util.List;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String databaseName = "katalog.db";
-    private static final int databaseVersion = 4;
+    private static final int databaseVersion = 5;
+
+    private static final String CREATE_TABLE_USERS =
+            "CREATE TABLE users (id INTEGER Primary Key AUTOINCREMENT, username Text UNIQUE NOT NULL, password_hash Text NOT NULL, is_admin INTEGER NOT NULL DEFAULT 0)";
+    private static final String CREATE_TABLE_PRODUCTS =
+            "CREATE TABLE products (id Integer Primary Key AUTOINCREMENT, image TEXT, kategori TEXT, nama_produk TEXT, harga INTEGER, merek TEXT, garansi TEXT, stok INTEGER, deskripsi TEXT)";
+
+    /** Demo account so the app is usable straight after install; documented in the README. */
+    private static final String SEED_ADMIN_USER = "admin";
+    private static final String SEED_ADMIN_PASSWORD = "admin123";
 
     public SQLiteHelper(Context context) {
         super(context, databaseName, null, databaseVersion);
@@ -20,45 +29,68 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     // Method untuk membuat tabel
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableUser = "CREATE TABLE users (id INTEGER Primary Key AUTOINCREMENT, username Text, password Text)";
-        String createTableProduct = "CREATE TABLE products (id Integer Primary Key AUTOINCREMENT, image TEXT, kategori TEXT, nama_produk TEXT, harga INTEGER, merek TEXT, garansi TEXT, stok INTEGER, deskripsi TEXT)";
-        db.execSQL(createTableUser);
-        db.execSQL(createTableProduct);
+        db.execSQL(CREATE_TABLE_USERS);
+        db.execSQL(CREATE_TABLE_PRODUCTS);
 
 //        set admin
-        ContentValues values = new ContentValues();
-        values.put("username", "admin");
-        values.put("password", "admin123");
-        db.insert("users", null, values);
+        insertUser(db, SEED_ADMIN_USER, SEED_ADMIN_PASSWORD, true);
     }
 
     // Method untuk mengubah database (jika versi di-upgrade)
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < databaseVersion) {
-            String createTableProduct = "CREATE TABLE IF NOT EXISTS products (id INTEGER Primary Key AUTOINCREMENT, image TEXT, kategori TEXT, nama_produk TEXT, harga INTEGER, merek TEXT, garansi TEXT, stok INTEGER, deskripsi TEXT)";
-            db.execSQL(createTableProduct);
+        if (oldVersion < 4) {
+            db.execSQL(CREATE_TABLE_PRODUCTS.replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS"));
+        }
+
+        if (oldVersion < 5) {
+            migrateUsersToHashedPasswords(db);
         }
 
         // Jika upgrade, periksa apakah admin sudah ada, jika belum tambahkan
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{"admin"});
-        if (cursor.getCount() == 0) {
-            ContentValues values = new ContentValues();
-            values.put("username", "admin");
-            values.put("password", "admin123");
-            db.insert("users", null, values);
+        Cursor cursor = db.rawQuery("SELECT id FROM users WHERE username = ?", new String[]{SEED_ADMIN_USER});
+        boolean adminMissing = cursor.getCount() == 0;
+        cursor.close();
+        if (adminMissing) {
+            insertUser(db, SEED_ADMIN_USER, SEED_ADMIN_PASSWORD, true);
+        }
+    }
+
+    /**
+     * Rebuilds users so the plain-text password column becomes password_hash + is_admin,
+     * hashing whatever the old rows held on the way. The table is recreated because the
+     * SQLite build shipped with API 24 has no DROP COLUMN.
+     */
+    private void migrateUsersToHashedPasswords(SQLiteDatabase db) {
+        db.execSQL("ALTER TABLE users RENAME TO users_legacy");
+        db.execSQL(CREATE_TABLE_USERS);
+
+        Cursor cursor = db.rawQuery("SELECT username, password FROM users_legacy", null);
+        while (cursor.moveToNext()) {
+            String username = cursor.getString(0);
+            String plainPassword = cursor.getString(1);
+            if (username != null && plainPassword != null) {
+                insertUser(db, username, plainPassword, SEED_ADMIN_USER.equals(username));
+            }
         }
         cursor.close();
+
+        db.execSQL("DROP TABLE users_legacy");
     }
 
     public void insertUser(String username, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
+        insertUser(db, username, password, SEED_ADMIN_USER.equals(username));
+        db.close();
+    }
+
+    private void insertUser(SQLiteDatabase db, String username, String password, boolean isAdmin) {
         ContentValues values = new ContentValues();
         values.put("username", username);
-        values.put("password", password);
+        values.put("password_hash", PasswordHasher.hash(password));
+        values.put("is_admin", isAdmin ? 1 : 0);
 
-        db.insert("users", null, values);
-        db.close();
+        db.insertWithOnConflict("users", null, values, SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public void insertProduct(String imagePath, String kategori, String namaProduk, int harga, String merek, String garansi, int stok, String deskripsi) {
@@ -101,28 +133,23 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
     public boolean checkUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM users WHERE username = ? and password = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{username, password});
-
-        boolean exists = (cursor.getCount() > 0);
+        String storedHash = null;
+        Cursor cursor = db.rawQuery("SELECT password_hash FROM users WHERE username = ?", new String[]{username});
+        if (cursor.moveToFirst()) {
+            storedHash = cursor.getString(0);
+        }
         cursor.close();
         db.close();
 
-        return exists;
+        // Hanya hash yang dibandingkan; password mentah tidak pernah masuk ke SQL.
+        return PasswordHasher.verify(password, storedHash);
     }
 
-    public boolean isAdmin(String username, String password) {
+    public boolean isAdmin(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM users WHERE username = ? and password = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{username, password});
+        Cursor cursor = db.rawQuery("SELECT is_admin FROM users WHERE username = ?", new String[]{username});
 
-        boolean isAdmin = false;
-        if (cursor.moveToFirst()) {
-            String user = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-            if (user.equals("admin")) {
-                isAdmin = true;
-            }
-        }
+        boolean isAdmin = cursor.moveToFirst() && cursor.getInt(0) == 1;
 
         cursor.close();
         db.close();

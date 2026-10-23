@@ -80,6 +80,10 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(this, "Password Kosong !", Toast.LENGTH_SHORT).show();
             binding.etPassword.setError("Isi Password !");
             check = false;
+        } else if (password.length() < 8) {
+            Toast.makeText(this, "Password minimal 8 karakter !", Toast.LENGTH_SHORT).show();
+            binding.etPassword.setError("Minimal 8 karakter !");
+            check = false;
         } else if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Confirm Password dan Password tidak sesuai !", Toast.LENGTH_SHORT).show();
             check = false;
