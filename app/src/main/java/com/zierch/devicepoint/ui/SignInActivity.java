@@ -66,7 +66,7 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+
         binding.tvForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,41 +96,38 @@ public class SignInActivity extends AppCompatActivity {
             binding.btnSign.setEnabled(true);
         } else {
             signIn();
-
-//            simpan username saja; password tidak pernah ditulis ke SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("username", username);
-            editor.remove("password"); // bersihkan sisa password dari versi lama
-            editor.apply();
         }
     }
 
     private void signIn() {
-        boolean isValid = dbHelper.checkUser(username, password);
-        boolean isAdmin = dbHelper.isAdmin(username);
-//        save untuk admin
-        SharedPreferences sharedPreferences = getSharedPreferences("IsAdmin", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("isAdmin", isAdmin);
-        editor.apply();
-        Intent intent = null;
-
-        if (isValid) {
-            // Jika valid, arahkan ke halaman berikutnya
-            Toast.makeText(SignInActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
-            if (isAdmin){
-                intent = new Intent(SignInActivity.this, HomeActivity.class);
-            } else {
-                intent = new Intent(SignInActivity.this, KategoriActivity.class);
-            }
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        } else {
+        if (!dbHelper.checkUser(username, password)) {
             // Jika tidak valid, tampilkan pesan error
             Toast.makeText(SignInActivity.this, "Username atau Password salah", Toast.LENGTH_SHORT).show();
             binding.btnSign.setEnabled(true);
+            return;
         }
+
+        boolean isAdmin = dbHelper.isAdmin(username);
+
+//        sesi hanya ditulis setelah kredensial terbukti valid
+        SharedPreferences sharedPreferences = getSharedPreferences("DataUser", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("username", username);
+        editor.remove("password"); // bersihkan sisa password dari versi lama
+        editor.apply();
+
+        getSharedPreferences("IsAdmin", Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean("isAdmin", isAdmin)
+                .apply();
+
+        // Jika valid, arahkan ke halaman berikutnya
+        Toast.makeText(SignInActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
+        Intent intent = isAdmin
+                ? new Intent(SignInActivity.this, HomeActivity.class)
+                : new Intent(SignInActivity.this, KategoriActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 }
