@@ -16,6 +16,7 @@ tidak ada request jaringan selain tombol kontak WhatsApp.
 - Cari produk berdasarkan nama atau merek, dan urutkan berdasarkan nama atau harga
 - Detail produk: harga, merek, garansi, stok, deskripsi
 - Tombol hubungi penjual lewat WhatsApp
+- Mengikuti tema terang/gelap sistem, lengkap dengan label gambar untuk pembaca layar
 
 **Admin**
 - Tambah, ubah, dan hapus produk
