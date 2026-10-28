@@ -30,12 +30,14 @@
 
             <ImageView
                 android:id="@+id/image"
+                android:contentDescription="@string/cd_foto_produk"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/cam"
+                android:contentDescription="@string/cd_tambah_foto"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"

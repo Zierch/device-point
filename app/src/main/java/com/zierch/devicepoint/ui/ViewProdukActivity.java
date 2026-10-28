@@ -46,6 +46,7 @@ public class ViewProdukActivity extends AppCompatActivity {
         String deskripsi = (String) objects[7];
 
         Glide.with(this).load(new File(imagePath)).into(binding.image);
+        binding.image.setContentDescription(namaProduk);
         binding.hargaProduk.setText(Helper.currencyID(hargaProduk));
         binding.namaProduk.setText(namaProduk);
         binding.isi1.setText(merek);

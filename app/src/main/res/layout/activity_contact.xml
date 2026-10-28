@@ -71,6 +71,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:contentDescription="@string/cd_whatsapp"
                         android:src="@drawable/ic_whatsapp" />
                 </LinearLayout>
 
@@ -89,7 +90,8 @@
                     android:layout_height="24dp"
                     android:layout_marginRight="20dp"
                     android:rotation="180"
-                    android:src="@drawable/ic_arrow_left" />
+                    android:contentDescription="@string/cd_kembali"
+                        android:src="@drawable/ic_arrow_left" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,6 +114,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:contentDescription="@string/cd_instagram"
                         android:src="@drawable/ic_instagram" />
                 </LinearLayout>
 
@@ -130,7 +133,8 @@
                     android:layout_height="24dp"
                     android:layout_marginRight="20dp"
                     android:rotation="180"
-                    android:src="@drawable/ic_arrow_left" />
+                    android:contentDescription="@string/cd_kembali"
+                        android:src="@drawable/ic_arrow_left" />
             </LinearLayout>
 
             <LinearLayout
@@ -153,6 +157,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:contentDescription="@string/cd_facebook"
                         android:src="@drawable/ic_facebook" />
                 </LinearLayout>
 
@@ -171,7 +176,8 @@
                     android:layout_height="24dp"
                     android:layout_marginRight="20dp"
                     android:rotation="180"
-                    android:src="@drawable/ic_arrow_left" />
+                    android:contentDescription="@string/cd_kembali"
+                        android:src="@drawable/ic_arrow_left" />
             </LinearLayout>
 
             <LinearLayout
@@ -194,6 +200,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:contentDescription="@string/cd_telegram"
                         android:src="@drawable/ic_telegram" />
                 </LinearLayout>
 
@@ -212,7 +219,8 @@
                     android:layout_height="24dp"
                     android:layout_marginRight="20dp"
                     android:rotation="180"
-                    android:src="@drawable/ic_arrow_left" />
+                    android:contentDescription="@string/cd_kembali"
+                        android:src="@drawable/ic_arrow_left" />
             </LinearLayout>
 
         </GridLayout>

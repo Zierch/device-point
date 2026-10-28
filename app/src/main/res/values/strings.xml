@@ -23,4 +23,20 @@
         <item>Harga termurah</item>
         <item>Harga termahal</item>
     </array>
+    <string name="cd_foto_produk">Foto produk</string>
+    <string name="cd_ubah_produk">Ubah produk</string>
+    <string name="cd_hapus_produk">Hapus produk</string>
+    <string name="cd_tambah_foto">Pilih foto produk</string>
+    <string name="cd_whatsapp">WhatsApp</string>
+    <string name="cd_instagram">Instagram</string>
+    <string name="cd_facebook">Facebook</string>
+    <string name="cd_telegram">Telegram</string>
+    <string name="cd_kategori_laptop">Laptop</string>
+    <string name="cd_kategori_smartphone">Smartphone</string>
+    <string name="cd_kategori_monitor">Monitor</string>
+    <string name="cd_kategori_router">Router</string>
+    <string name="cd_kategori_printer">Printer</string>
+    <string name="cd_kategori_aksesoris">Aksesoris</string>
+    <string name="cd_kembali">Kembali</string>
+    <string name="splash_tagline">Katalog Produk</string>
 </resources>

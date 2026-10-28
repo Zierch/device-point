@@ -43,6 +43,7 @@
 
                 <ImageView
                     android:id="@+id/image_1"
+                    android:contentDescription="@string/cd_kategori_laptop"
                     style="@style/MarginItemCat"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
@@ -82,6 +83,7 @@
 
                 <ImageView
                     android:id="@+id/image_2"
+                    android:contentDescription="@string/cd_kategori_smartphone"
                     style="@style/MarginItemCat"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
@@ -122,6 +124,7 @@
 
                 <ImageView
                     android:id="@+id/image_3"
+                    android:contentDescription="@string/cd_kategori_monitor"
                     style="@style/MarginItemCat"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
@@ -162,6 +165,7 @@
 
                 <ImageView
                     android:id="@+id/image_4"
+                    android:contentDescription="@string/cd_kategori_router"
                     style="@style/MarginItemCat"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
@@ -202,6 +206,7 @@
 
                 <ImageView
                     android:id="@+id/image_5"
+                    android:contentDescription="@string/cd_kategori_printer"
                     style="@style/MarginItemCat"
                     android:layout_width="120dp"
                     android:layout_height="100dp"
@@ -242,6 +247,7 @@
 
                 <ImageView
                     android:id="@+id/image_6"
+                    android:contentDescription="@string/cd_kategori_aksesoris"
                     style="@style/MarginItemCat"
                     android:layout_width="120dp"
                     android:layout_height="100dp"

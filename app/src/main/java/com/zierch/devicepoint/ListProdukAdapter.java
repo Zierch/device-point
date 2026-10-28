@@ -57,6 +57,7 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
                 .into(holder.binding.imageProduk1);
         holder.binding.namaProduk.setText(namaProduk);
         holder.binding.hargaProduk.setText(Helper.currencyID(hargaProduk));
+        holder.binding.imageProduk1.setContentDescription(namaProduk);
 
         boolean isAdmin = dbHelper.isAdmin(username);
         if (isAdmin){
