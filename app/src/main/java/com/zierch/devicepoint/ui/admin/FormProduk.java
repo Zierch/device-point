@@ -1,10 +1,8 @@
 package com.zierch.devicepoint.ui.admin;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.zierch.devicepoint.ImageStore;
 import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.FormTambahProdukBinding;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FormProduk extends AppCompatActivity {
@@ -98,31 +96,17 @@ public class FormProduk extends AppCompatActivity {
     private void check() {
         boolean check = true;
 
-        // Mendapatkan variabel
+        // Mendapatkan variabel (angka baru di-parse setelah lolos validasi)
         kategori = binding.kategori.getSelectedItem().toString();
-        namaProduk = binding.namaProduk.getText().toString();
-        merek = binding.merekProduk.getText().toString();
-        deskripsi = binding.deskripsi.getText().toString();
-        garansi = binding.garansi.getText().toString() + " Bulan";
-        hargaProduk = Integer.parseInt(binding.hargaProduk.getText().toString());
-        stok = Integer.parseInt(binding.stok.getText().toString());
+        namaProduk = binding.namaProduk.getText().toString().trim();
+        merek = binding.merekProduk.getText().toString().trim();
+        deskripsi = binding.deskripsi.getText().toString().trim();
+        String garansiBulan = binding.garansi.getText().toString().trim();
+        String hargaInput = binding.hargaProduk.getText().toString().trim();
+        String stokInput = binding.stok.getText().toString().trim();
 
-        // Jika imageUri tidak null, maka simpan gambar
-        if (imageUri != null) {
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(FormProduk.this.getContentResolver(), imageUri);
-                imagePath = saveImageToStorage(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            // Jika dalam mode edit dan tidak ada gambar baru, gunakan gambar yang ada
-            if (isEditMode) {
-                imagePath = dbHelper.getExistingImagePath(produkId); // Ambil gambar yang ada dari database
-            } else {
-                imagePath = ""; // Tidak ada gambar baru dan bukan mode edit
-            }
-        }
+        hargaProduk = parseNumber(hargaInput);
+        stok = parseNumber(stokInput);
 
         if (namaProduk.isEmpty()) {
             Toast.makeText(this, "Nama Produk Kosong !", Toast.LENGTH_SHORT).show();
@@ -136,35 +120,70 @@ public class FormProduk extends AppCompatActivity {
             Toast.makeText(this, "Deskripsi Kosong !", Toast.LENGTH_SHORT).show();
             binding.deskripsi.setError("Isi Deskripsi !");
             check = false;
-        } else if (garansi.isEmpty()) {
+        } else if (garansiBulan.isEmpty()) {
             Toast.makeText(this, "Garansi Kosong !", Toast.LENGTH_SHORT).show();
             binding.garansi.setError("Isi Garansi !");
             check = false;
-        } else if (hargaProduk == 0) {
-            Toast.makeText(this, "Harga Kosong !", Toast.LENGTH_SHORT).show();
+        } else if (hargaProduk <= 0) {
+            Toast.makeText(this, "Harga harus angka lebih dari 0 !", Toast.LENGTH_SHORT).show();
             binding.hargaProduk.setError("Isi Harga !");
             check = false;
-        } else if (stok == 0) {
-            Toast.makeText(this, "Stok Kosong !", Toast.LENGTH_SHORT).show();
+        } else if (stok < 0) {
+            Toast.makeText(this, "Stok harus angka 0 atau lebih !", Toast.LENGTH_SHORT).show();
             binding.stok.setError("Isi Stok !");
             check = false;
         }
 
         if (!check) {
             binding.btnSave.setEnabled(true);
-        } else {
-            if (isEditMode) {
-                // Update produk
-                dbHelper.updateProduct(produkId, imagePath, kategori, namaProduk, hargaProduk, merek, garansi, stok, deskripsi);
-                Toast.makeText(this, "Produk berhasil diperbarui", Toast.LENGTH_SHORT).show();
-                setResult(RESULT_OK);
-            } else {
-                // Insert produk baru
-                dbHelper.insertProduct(imagePath, kategori, namaProduk, hargaProduk, merek, garansi, stok, deskripsi);
-                Toast.makeText(this, "Produk berhasil ditambahkan", Toast.LENGTH_SHORT).show();
-            }
-            finish();
+            return;
         }
+
+        garansi = garansiBulan + " Bulan";
+
+        try {
+            imagePath = resolveImagePath();
+        } catch (IOException e) {
+            Toast.makeText(this, "Gagal menyimpan gambar", Toast.LENGTH_SHORT).show();
+            binding.btnSave.setEnabled(true);
+            return;
+        }
+
+        if (isEditMode) {
+            String previousImage = dbHelper.getExistingImagePath(produkId);
+            dbHelper.updateProduct(produkId, imagePath, kategori, namaProduk, hargaProduk, merek, garansi, stok, deskripsi);
+            if (previousImage != null && !previousImage.equals(imagePath)) {
+                ImageStore.delete(previousImage);
+            }
+            Toast.makeText(this, "Produk berhasil diperbarui", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+        } else {
+            dbHelper.insertProduct(imagePath, kategori, namaProduk, hargaProduk, merek, garansi, stok, deskripsi);
+            Toast.makeText(this, "Produk berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+        }
+        finish();
+    }
+
+    private int parseNumber(String value) {
+        if (value.isEmpty()) {
+            return -1;
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    /** Gambar baru disalin ke penyimpanan aplikasi; saat edit tanpa gambar baru, path lama dipakai. */
+    private String resolveImagePath() throws IOException {
+        if (imageUri != null) {
+            return ImageStore.save(this, imageUri);
+        }
+        if (isEditMode) {
+            return dbHelper.getExistingImagePath(produkId);
+        }
+        return "";
     }
 
 
@@ -173,22 +192,6 @@ public class FormProduk extends AppCompatActivity {
         intent.setType("image/*");
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
-    private String saveImageToStorage(Bitmap bitmap) throws IOException {
-        File directory = new File(getExternalFilesDir(null), "ProductImages");
-        if (!directory.exists()) {
-            directory.mkdirs();  // Buat direktori jika belum ada
-        }
-
-        String fileName = System.currentTimeMillis() + ".png";
-        File imageFile = new File(directory, fileName);
-
-        try (FileOutputStream fos = new FileOutputStream(imageFile)) {
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        }
-
-        return imageFile.getAbsolutePath();  // Kembalikan path gambar
-    }
-
     // Load data produk jika dalam mode edit
     private void loadProdukData(int produkId) {
         if (produkId != -1) {
@@ -211,7 +214,7 @@ public class FormProduk extends AppCompatActivity {
                 binding.hargaProduk.setText(String.valueOf(hargaProduk));
                 binding.merekProduk.setText(merek);
                 binding.deskripsi.setText(deskripsi);
-                binding.garansi.setText(garansi);
+                binding.garansi.setText(garansi.replaceAll("(?i)\\s*bulan$", ""));
                 binding.stok.setText(String.valueOf(stok));
                 binding.cam.setVisibility(View.GONE);
 
