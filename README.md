@@ -13,12 +13,13 @@ tidak ada request jaringan selain tombol kontak WhatsApp.
 **Pengguna**
 - Daftar akun dan login (password disimpan sebagai hash, lihat [Keamanan](#keamanan))
 - Jelajah katalog per kategori
+- Cari produk berdasarkan nama atau merek, dan urutkan berdasarkan nama atau harga
 - Detail produk: harga, merek, garansi, stok, deskripsi
 - Tombol hubungi penjual lewat WhatsApp
 
 **Admin**
 - Tambah, ubah, dan hapus produk
-- Unggah foto produk dari galeri
+- Unggah foto produk dari galeri — foto otomatis diperkecil dan dikompres
 - Halaman admin diproteksi ulang di database, bukan hanya dari status login
 
 ## Akun demo
@@ -49,6 +50,7 @@ halaman Sign Up — akun baru otomatis bukan admin.
 ```
 app/src/main/java/com/zierch/devicepoint/
 ├── PasswordHasher.java        # PBKDF2 hash + verifikasi
+├── ImageStore.java            # simpan/perkecil/hapus foto produk
 ├── SQLiteHelper.java          # skema, migrasi, query produk & pengguna
 ├── Helper.java                # helper perpindahan activity
 ├── ListProdukAdapter.java     # adapter daftar produk
@@ -57,12 +59,16 @@ app/src/main/java/com/zierch/devicepoint/
     ├── SignInActivity.java
     ├── SignUpActivity.java
     ├── KategoriActivity.java      # daftar kategori
-    ├── ListProdukActivity.java    # produk per kategori
+    ├── ListProdukActivity.java    # produk per kategori + cari & urutkan
     ├── ViewProdukActivity.java    # detail produk
     ├── ContactActivity.java       # kontak penjual (WhatsApp)
     └── admin/
         ├── HomeActivity.java      # beranda admin
         └── FormProduk.java        # tambah/ubah produk + unggah gambar
+
+app/src/test/java/com/zierch/devicepoint/
+├── SQLiteHelperTest.java      # CRUD, migrasi, pencarian, pengurutan
+└── PasswordHasherTest.java    # hashing & verifikasi
 ```
 
 ## Skema database
@@ -101,6 +107,23 @@ gradlew.bat assembleDebug        # Windows
 
 Butuh JDK 17 atau lebih baru. APK hasil build ada di
 `app/build/outputs/apk/debug/app-debug.apk`.
+
+## Test
+
+```bash
+./gradlew test          # Linux/macOS
+gradlew.bat test        # Windows
+```
+
+15 test unit (Robolectric, tanpa perlu emulator) mencakup:
+
+- login akun seed dan akun baru, penolakan password salah, akun baru bukan admin
+- username duplikat diabaikan, password tersimpan sebagai hash
+- migrasi database skema 4 → 5 tetap bisa login dan data produk tidak hilang
+- pencarian nama/merek, keempat mode urutan, isolasi kategori
+- update dan hapus produk
+- hashing: round-trip, salt berbeda tiap hash, hash yang diubah ditolak,
+  algoritma tak dikenal dan format rusak ditolak
 
 <!--
 ## Screenshot
