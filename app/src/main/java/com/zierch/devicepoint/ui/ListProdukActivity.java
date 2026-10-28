@@ -108,6 +108,8 @@ public class ListProdukActivity extends AppCompatActivity {
 
             }
         });
+
+        refresh();
     }
 
     /** Posisi spinner mengikuti urutan di {@code R.array.urutan_produk}. */
