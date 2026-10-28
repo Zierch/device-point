@@ -38,11 +38,12 @@ android {
 
 dependencies {
 
-    implementation ("com.github.bumptech.glide:glide:4.14.2")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.exifinterface)
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.test.core)
