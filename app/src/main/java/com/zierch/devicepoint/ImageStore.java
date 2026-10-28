@@ -20,7 +20,7 @@ import java.util.UUID;
 public final class ImageStore {
 
     private static final int MAX_DIMENSION = 1024;
-    private static final int JPEG_QUALITY = 85;
+    private static final int COMPRESS_QUALITY = 85;
     private static final String DIRECTORY = "ProductImages";
 
     private ImageStore() {
@@ -43,7 +43,7 @@ public final class ImageStore {
 
         File file = new File(directory, "produk_" + UUID.randomUUID() + extension);
         try (FileOutputStream out = new FileOutputStream(file)) {
-            if (!bitmap.compress(format, JPEG_QUALITY, out)) {
+            if (!bitmap.compress(format, COMPRESS_QUALITY, out)) {
                 throw new IOException("Gagal mengompres gambar");
             }
         } finally {
@@ -126,8 +126,16 @@ public final class ImageStore {
                 case ExifInterface.ORIENTATION_FLIP_HORIZONTAL:
                     matrix.postScale(-1, 1);
                     break;
+                case ExifInterface.ORIENTATION_TRANSPOSE:
+                    matrix.postRotate(90);
+                    matrix.postScale(-1, 1);
+                    break;
                 case ExifInterface.ORIENTATION_FLIP_VERTICAL:
                     matrix.postScale(1, -1);
+                    break;
+                case ExifInterface.ORIENTATION_TRANSVERSE:
+                    matrix.postRotate(270);
+                    matrix.postScale(-1, 1);
                     break;
                 default:
                     return bitmap;
