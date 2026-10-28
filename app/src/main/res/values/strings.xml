@@ -13,4 +13,14 @@
         <item>Printer</item>
         <item>Aksesoris</item>
     </array>
+
+    <string name="cari_produk">Cari produk atau merek</string>
+    <string name="produk_kosong">Tidak ada produk yang cocok</string>
+
+    <array name="urutan_produk">
+        <item>Terbaru</item>
+        <item>Nama A-Z</item>
+        <item>Harga termurah</item>
+        <item>Harga termahal</item>
+    </array>
 </resources>

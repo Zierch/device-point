@@ -22,6 +22,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String SEED_ADMIN_USER = "admin";
     private static final String SEED_ADMIN_PASSWORD = "admin123";
 
+    public static final String SORT_NEWEST = "terbaru";
+    public static final String SORT_NAME = "nama_asc";
+    public static final String SORT_PRICE_LOW = "harga_asc";
+    public static final String SORT_PRICE_HIGH = "harga_desc";
+
     public SQLiteHelper(Context context) {
         super(context, databaseName, null, databaseVersion);
     }
@@ -169,10 +174,31 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     public List<Object[]> getProdukByKategori(String kategori) {
+        return getProdukByKategori(kategori, "", SORT_NEWEST);
+    }
+
+    /**
+     * Produk dalam satu kategori, dengan pencarian nama/merek dan urutan pilihan.
+     * Kata kunci selalu lewat placeholder, dan urutan hanya boleh dari konstanta SORT_*.
+     */
+    public List<Object[]> getProdukByKategori(String kategori, String keyword, String sort) {
         List<Object[]> produkList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT id, image, nama_produk, harga, merek, garansi, stok, deskripsi FROM products WHERE kategori=?", new String[]{kategori});
+        StringBuilder sql = new StringBuilder(
+                "SELECT id, image, nama_produk, harga, merek, garansi, stok, deskripsi FROM products WHERE kategori = ?");
+        List<String> args = new ArrayList<>();
+        args.add(kategori);
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            sql.append(" AND (nama_produk LIKE ? OR merek LIKE ?)");
+            String like = "%" + keyword.trim() + "%";
+            args.add(like);
+            args.add(like);
+        }
+        sql.append(" ORDER BY ").append(orderBy(sort));
+
+        Cursor cursor = db.rawQuery(sql.toString(), args.toArray(new String[0]));
 
         if (cursor.moveToFirst()) {
             do {
@@ -191,6 +217,20 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         return produkList;
+    }
+
+    /** Urutan di-whitelist supaya pilihan sort tidak bisa jadi SQL injection. */
+    private String orderBy(String sort) {
+        if (SORT_NAME.equals(sort)) {
+            return "nama_produk COLLATE NOCASE ASC";
+        }
+        if (SORT_PRICE_LOW.equals(sort)) {
+            return "harga ASC";
+        }
+        if (SORT_PRICE_HIGH.equals(sort)) {
+            return "harga DESC";
+        }
+        return "id DESC";
     }
 
     public Object[] getProdukById(int id) {
