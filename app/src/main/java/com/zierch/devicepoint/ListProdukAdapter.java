@@ -76,7 +76,7 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
                     boolean isDeleted = dbHelper.deleteProduct(productId);
                     int currentPosition = holder.getAdapterPosition();
                     if (isDeleted) {
-                        ImageStore.delete(imagePath);
+                        ImageStore.delete(holder.itemView.getContext(), imagePath);
                         itemList.remove(currentPosition);
                         notifyItemRemoved(currentPosition);
                         notifyItemRangeChanged(currentPosition, itemList.size());

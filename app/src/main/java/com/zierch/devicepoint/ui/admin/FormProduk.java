@@ -151,9 +151,17 @@ public class FormProduk extends AppCompatActivity {
 
         if (isEditMode) {
             String previousImage = dbHelper.getExistingImagePath(produkId);
-            dbHelper.updateProduct(produkId, imagePath, kategori, namaProduk, hargaProduk, merek, garansi, stok, deskripsi);
+            boolean updated = dbHelper.updateProduct(produkId, imagePath, kategori, namaProduk, hargaProduk, merek, garansi, stok, deskripsi);
+            if (!updated) {
+                if (imageUri != null) {
+                    ImageStore.delete(this, imagePath);
+                }
+                Toast.makeText(this, "Gagal memperbarui produk", Toast.LENGTH_SHORT).show();
+                binding.btnSave.setEnabled(true);
+                return;
+            }
             if (previousImage != null && !previousImage.equals(imagePath)) {
-                ImageStore.delete(previousImage);
+                ImageStore.delete(this, previousImage);
             }
             Toast.makeText(this, "Produk berhasil diperbarui", Toast.LENGTH_SHORT).show();
             setResult(RESULT_OK);

@@ -114,7 +114,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.insert("products", null, values);
         db.close();
     }
-    public void updateProduct(int id, String imagePath, String kategori, String namaProduk, int hargaProduk, String merek, String garansi, int stok, String deskripsi) {
+    public boolean updateProduct(int id, String imagePath, String kategori, String namaProduk, int hargaProduk, String merek, String garansi, int stok, String deskripsi) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("image", imagePath);
@@ -126,8 +126,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         values.put("stok", stok);
         values.put("deskripsi", deskripsi);
 
-        db.update("products", values, "id=?", new String[]{String.valueOf(id)});
+        int rows = db.update("products", values, "id=?", new String[]{String.valueOf(id)});
         db.close();
+        return rows > 0;
     }
     public boolean deleteProduct(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
