@@ -38,5 +38,6 @@
     <string name="cd_kategori_printer">Printer</string>
     <string name="cd_kategori_aksesoris">Aksesoris</string>
     <string name="cd_kembali">Kembali</string>
+    <string name="tombol_contact">Contact</string>
     <string name="splash_tagline">Katalog Produk</string>
 </resources>
