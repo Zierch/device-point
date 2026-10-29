@@ -126,15 +126,25 @@ gradlew.bat test        # Windows
 - hashing: round-trip, salt berbeda tiap hash, hash yang diubah ditolak,
   algoritma tak dikenal dan format rusak ditolak
 
-<!--
 ## Screenshot
 
-_Tambahkan setelah gambar diambil dari emulator (jangan dari HP pribadi):_
+Diambil dari emulator Pixel 7 (Android 16), tema gelap:
 
-| Login | Katalog | Detail | Admin |
-|---|---|---|---|
-| ![](docs/screenshots/login.png) | ![](docs/screenshots/kategori.png) | ![](docs/screenshots/detail.png) | ![](docs/screenshots/admin.png) |
--->
+| Login | Kategori | Daftar produk |
+|---|---|---|
+| ![](docs/screenshots/login.png) | ![](docs/screenshots/kategori.png) | ![](docs/screenshots/daftar-produk.png) |
+
+| Detail produk | Beranda admin | Form produk |
+|---|---|---|
+| ![](docs/screenshots/detail.png) | ![](docs/screenshots/admin-beranda.png) | ![](docs/screenshots/admin-form.png) |
+
+Tema terang mengikuti pengaturan sistem:
+
+| Kategori | Daftar produk |
+|---|---|
+| ![](docs/screenshots/kategori-terang.png) | ![](docs/screenshots/daftar-produk-terang.png) |
+
+_Produk pada tangkapan layar adalah data contoh yang dimasukkan lewat halaman admin._
 
 ## License
 
