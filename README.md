@@ -131,18 +131,18 @@ gradlew.bat test        # Windows
 Diambil dari emulator Pixel 7 (Android 16), tema gelap:
 
 | Login | Kategori | Daftar produk |
-|---|---|---|
-| ![](docs/screenshots/login.png) | ![](docs/screenshots/kategori.png) | ![](docs/screenshots/daftar-produk.png) |
+| --- | --- | --- |
+| <img src="docs/screenshots/login.png" width="240" alt="Login"> | <img src="docs/screenshots/kategori.png" width="240" alt="Kategori"> | <img src="docs/screenshots/daftar-produk.png" width="240" alt="Daftar produk"> |
 
 | Detail produk | Beranda admin | Form produk |
-|---|---|---|
-| ![](docs/screenshots/detail.png) | ![](docs/screenshots/admin-beranda.png) | ![](docs/screenshots/admin-form.png) |
+| --- | --- | --- |
+| <img src="docs/screenshots/detail.png" width="240" alt="Detail produk"> | <img src="docs/screenshots/admin-beranda.png" width="240" alt="Beranda admin"> | <img src="docs/screenshots/admin-form.png" width="240" alt="Form produk"> |
 
 Tema terang mengikuti pengaturan sistem:
 
-| Kategori | Daftar produk |
-|---|---|
-| ![](docs/screenshots/kategori-terang.png) | ![](docs/screenshots/daftar-produk-terang.png) |
+| Kategori | Daftar produk | Detail produk |
+| --- | --- | --- |
+| <img src="docs/screenshots/kategori-terang.png" width="240" alt="Kategori, terang"> | <img src="docs/screenshots/daftar-produk-terang.png" width="240" alt="Daftar produk, terang"> | <img src="docs/screenshots/detail-terang.png" width="240" alt="Detail produk, terang"> |
 
 _Produk pada tangkapan layar adalah data contoh yang dimasukkan lewat halaman admin._
 
