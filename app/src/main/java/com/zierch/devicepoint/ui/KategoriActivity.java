@@ -16,21 +16,26 @@ import androidx.appcompat.widget.Toolbar;
 import com.zierch.devicepoint.Helper;
 import com.zierch.devicepoint.R;
 import com.zierch.devicepoint.databinding.ActivityKategoriBinding;
+import com.zierch.devicepoint.SystemBars;
 
 public class KategoriActivity extends AppCompatActivity {
     protected ActivityKategoriBinding binding;
     private boolean backPressedOnce = false;
     private Toast backToast;
 
-    //    ambil data dari sharedPreferences
-    SharedPreferences sharedPreferences = this.getSharedPreferences("IsAdmin", Context.MODE_PRIVATE);
-    private boolean isAdmin = sharedPreferences.getBoolean("isAdmin", false);
+    private SharedPreferences sharedPreferences;
+    private boolean isAdmin;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //    ambil data dari sharedPreferences (setelah context siap, bukan di field initializer)
+        sharedPreferences = getSharedPreferences("IsAdmin", Context.MODE_PRIVATE);
+        isAdmin = sharedPreferences.getBoolean("isAdmin", false);
         binding = ActivityKategoriBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 
