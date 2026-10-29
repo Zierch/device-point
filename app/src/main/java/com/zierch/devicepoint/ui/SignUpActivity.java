@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.ActivitySignUpBinding;
+import com.zierch.devicepoint.SystemBars;
 
 public class SignUpActivity extends AppCompatActivity {
     protected ActivitySignUpBinding binding;
@@ -24,6 +25,7 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 

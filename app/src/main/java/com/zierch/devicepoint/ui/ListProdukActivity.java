@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.zierch.devicepoint.ListProdukAdapter;
 import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.ActivityListProdukBinding;
+import com.zierch.devicepoint.SystemBars;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,7 @@ public class ListProdukActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityListProdukBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 

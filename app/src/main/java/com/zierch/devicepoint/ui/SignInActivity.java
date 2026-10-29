@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.ActivitySignInBinding;
 import com.zierch.devicepoint.ui.admin.HomeActivity;
+import com.zierch.devicepoint.SystemBars;
 
 
 public class SignInActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 

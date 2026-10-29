@@ -45,7 +45,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:text="Tambah Produk"
-                    android:textColor="@color/md_theme_black"
+                    android:textColor="@color/md_theme_onSurface"
                     android:textSize="24dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -73,7 +73,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:text="Kategori"
-                    android:textColor="@color/md_theme_black"
+                    android:textColor="@color/md_theme_onSurface"
                     android:textSize="24dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -97,7 +97,8 @@
             android:background="@drawable/box_button_contact"
             android:paddingLeft="60dp"
             android:paddingRight="60dp"
-            android:text="Contact"
+            android:text="@string/tombol_contact"
+            android:textColor="@color/md_theme_onPrimaryContainer"
             android:textSize="20dp" />
 
     </LinearLayout>

@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="Kategori :"
-                android:textColor="@color/md_theme_black"
+                android:textColor="@color/md_theme_onSurface"
                 android:textSize="17dp" />
 
             <Spinner
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundColor="@color/md_theme_surfaceContainerLow"
             app:boxBackgroundMode="outline"
             app:boxCollapsedPaddingTop="0dp"
             app:boxCornerRadiusBottomEnd="5dp"
@@ -95,7 +95,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundColor="@color/md_theme_surfaceContainerLow"
             app:boxBackgroundMode="outline"
             android:layout_marginTop="5dp"
             app:boxCollapsedPaddingTop="0dp"
@@ -117,7 +117,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundColor="@color/md_theme_surfaceContainerLow"
             app:boxBackgroundMode="outline"
             app:boxCollapsedPaddingTop="0dp"
             android:layout_marginTop="5dp"
@@ -146,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:boxBackgroundColor="@color/md_theme_white"
+                app:boxBackgroundColor="@color/md_theme_surfaceContainerLow"
                 app:boxBackgroundMode="outline"
                 app:boxCollapsedPaddingTop="0dp"
                 app:boxCornerRadiusBottomEnd="5dp"
@@ -168,7 +168,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:boxBackgroundColor="@color/md_theme_white"
+                app:boxBackgroundColor="@color/md_theme_surfaceContainerLow"
                 app:boxBackgroundMode="outline"
                 app:boxCollapsedPaddingTop="0dp"
                 app:boxCornerRadiusBottomEnd="5dp"
@@ -190,15 +190,14 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/md_theme_white"
+            app:boxBackgroundColor="@color/md_theme_surfaceContainerLow"
             app:boxBackgroundMode="outline"
             app:boxCollapsedPaddingTop="0dp"
             app:boxCornerRadiusBottomEnd="5dp"
             app:boxCornerRadiusBottomStart="5dp"
             app:boxCornerRadiusTopEnd="5dp"
             android:layout_marginTop="5dp"
-            app:boxCornerRadiusTopStart="5dp"
-            app:counterEnabled="true">
+            app:boxCornerRadiusTopStart="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/deskripsi"

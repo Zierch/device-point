@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.bumptech.glide.Glide;
 import com.zierch.devicepoint.Helper;
 import com.zierch.devicepoint.databinding.ActivityViewProdukBinding;
+import com.zierch.devicepoint.SystemBars;
 
 import java.io.File;
 
@@ -23,6 +24,7 @@ public class ViewProdukActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityViewProdukBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 

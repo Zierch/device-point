@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.zierch.devicepoint.ImageStore;
 import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.FormTambahProdukBinding;
+import com.zierch.devicepoint.SystemBars;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,6 +39,7 @@ public class FormProduk extends AppCompatActivity {
         }
         binding = FormTambahProdukBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
 
         // Cek apakah ini mode edit

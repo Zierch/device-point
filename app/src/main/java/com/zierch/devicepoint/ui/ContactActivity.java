@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.zierch.devicepoint.databinding.ActivityContactBinding;
+import com.zierch.devicepoint.SystemBars;
 
 public class ContactActivity extends AppCompatActivity {
     protected ActivityContactBinding binding;
@@ -23,6 +24,7 @@ public class ContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityContactBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 

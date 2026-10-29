@@ -28,14 +28,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_extra_bold"
             android:text="Contact Us"
-            android:textColor="@color/md_theme_black"
+            android:textColor="@color/md_theme_onSurface"
             android:textSize="24dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jangan ragu untuk menghubungi kami jika Anda memiliki saran untuk perbaikan, keluhan yang ingin didiskusikan, atau masalah yang perlu diselesaikan."
-            android:textColor="@color/md_theme_black"
+            android:textColor="@color/md_theme_onSurface"
             android:textSize="14dp" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Contact on social media"
-            android:textColor="@color/md_theme_black"
+            android:textColor="@color/md_theme_onSurface"
             android:textSize="17dp" />
 
         <GridLayout
@@ -82,7 +82,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Whatsapp"
-                    android:textColor="@color/md_theme_black"
+                    android:textColor="@color/md_theme_onSurface"
                     android:textSize="17dp" />
 
                 <ImageView
@@ -125,7 +125,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Instagram"
-                    android:textColor="@color/md_theme_black"
+                    android:textColor="@color/md_theme_onSurface"
                     android:textSize="17dp" />
 
                 <ImageView
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Facebook"
-                    android:textColor="@color/md_theme_black"
+                    android:textColor="@color/md_theme_onSurface"
                     android:textSize="17dp" />
 
                 <ImageView
@@ -211,7 +211,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Telegram"
-                    android:textColor="@color/md_theme_black"
+                    android:textColor="@color/md_theme_onSurface"
                     android:textSize="17dp" />
 
                 <ImageView

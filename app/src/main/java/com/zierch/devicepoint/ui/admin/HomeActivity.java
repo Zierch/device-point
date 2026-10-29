@@ -15,6 +15,7 @@ import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.ActivityHomeBinding;
 import com.zierch.devicepoint.ui.ContactActivity;
 import com.zierch.devicepoint.ui.KategoriActivity;
+import com.zierch.devicepoint.SystemBars;
 
 public class HomeActivity extends AppCompatActivity {
     protected ActivityHomeBinding binding;
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        SystemBars.apply(binding.getRoot());
         initView();
     }
 
