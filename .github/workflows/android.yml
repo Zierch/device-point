@@ -21,7 +21,9 @@ jobs:
           java-version: '21'
 
       - name: Install SDK packages
-        run: yes | sdkmanager "platforms;android-36" "build-tools;36.0.0" > /dev/null
+        run: |
+          SDKMGR=$(ls -d "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager | tail -1)
+          yes | "$SDKMGR" "platforms;android-36" "build-tools;36.0.0" > /dev/null
 
       - uses: gradle/actions/setup-gradle@v4
 
