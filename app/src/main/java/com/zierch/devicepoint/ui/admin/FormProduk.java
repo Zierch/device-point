@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.zierch.devicepoint.R;
 import com.zierch.devicepoint.ImageStore;
 import com.zierch.devicepoint.SQLiteHelper;
 import com.zierch.devicepoint.databinding.FormTambahProdukBinding;
@@ -229,7 +230,10 @@ public class FormProduk extends AppCompatActivity {
                 binding.cam.setVisibility(View.GONE);
 
                 // Untuk gambar
-                Glide.with(this).load(new File(imagePath)).into(binding.image);
+                Glide.with(this).load(new File(imagePath))
+                        .placeholder(R.drawable.img_product_placeholder)
+                        .error(R.drawable.img_product_placeholder)
+                        .into(binding.image);
             }
         } else {
             Toast.makeText(this, "Produk tidak ditemukan!", Toast.LENGTH_SHORT).show();

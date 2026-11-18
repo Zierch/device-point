@@ -54,6 +54,8 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
 
         Glide.with(holder.itemView.getContext())
                 .load(new File(imagePath))
+                .placeholder(R.drawable.img_product_placeholder)
+                .error(R.drawable.img_product_placeholder)
                 .into(holder.binding.imageProduk1);
         holder.binding.namaProduk.setText(namaProduk);
         holder.binding.hargaProduk.setText(Helper.currencyID(hargaProduk));

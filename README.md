@@ -116,7 +116,7 @@ Butuh JDK 17 atau lebih baru. APK hasil build ada di
 gradlew.bat test        # Windows
 ```
 
-15 test unit (Robolectric, tanpa perlu emulator) mencakup:
+18 test unit (Robolectric, tanpa perlu emulator) dan 1 test instrumented mencakup:
 
 - login akun seed dan akun baru, penolakan password salah, akun baru bukan admin
 - username duplikat diabaikan, password tersimpan sebagai hash

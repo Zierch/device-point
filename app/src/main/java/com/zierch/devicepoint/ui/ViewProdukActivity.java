@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.zierch.devicepoint.R;
 import com.zierch.devicepoint.Helper;
 import com.zierch.devicepoint.databinding.ActivityViewProdukBinding;
 import com.zierch.devicepoint.SystemBars;
@@ -47,7 +48,10 @@ public class ViewProdukActivity extends AppCompatActivity {
         int stok = (int) objects[6];
         String deskripsi = (String) objects[7];
 
-        Glide.with(this).load(new File(imagePath)).into(binding.image);
+        Glide.with(this).load(new File(imagePath))
+                .placeholder(R.drawable.img_product_placeholder)
+                .error(R.drawable.img_product_placeholder)
+                .into(binding.image);
         binding.image.setContentDescription(namaProduk);
         binding.hargaProduk.setText(Helper.currencyID(hargaProduk));
         binding.namaProduk.setText(namaProduk);
