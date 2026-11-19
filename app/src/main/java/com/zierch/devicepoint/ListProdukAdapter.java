@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.zierch.devicepoint.databinding.FormTambahProdukBinding;
-import com.zierch.devicepoint.databinding.ItemListProdukBinding;
+import com.zierch.devicepoint.databinding.ItemProdukKatalogBinding;
 import com.zierch.devicepoint.ui.admin.FormProduk;
 
 import java.io.File;
@@ -41,7 +41,7 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
     @NonNull
     @Override
     public ListProdukAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ListProdukAdapter.ViewHolder(ItemListProdukBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
+        return new ListProdukAdapter.ViewHolder(ItemProdukKatalogBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
     @Override
@@ -52,14 +52,33 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
         String namaProduk = (String) item[2];
         int hargaProduk = (int) item[3];
 
-        Glide.with(holder.itemView.getContext())
-                .load(new File(imagePath))
-                .placeholder(R.drawable.img_product_placeholder)
-                .error(R.drawable.img_product_placeholder)
-                .into(holder.binding.imageProduk1);
-        holder.binding.namaProduk.setText(namaProduk);
-        holder.binding.hargaProduk.setText(Helper.currencyID(hargaProduk));
+        if (imagePath != null && !imagePath.isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(new File(imagePath))
+                    .placeholder(R.drawable.img_product_placeholder)
+                    .error(R.drawable.img_product_placeholder)
+                    .into(holder.binding.imageProduk1);
+        }
+        String merek = (String) item[4];
+        int stok = (int) item[6];
+        holder.binding.tvMerek.setText(DemoData.brandOf(namaProduk, merek));
+        holder.binding.namaProduk.setText(DemoData.modelOf(namaProduk));
+        holder.binding.hargaProduk.setText("Rp " + Helper.currencyID(hargaProduk));
         holder.binding.imageProduk1.setContentDescription(namaProduk);
+        holder.binding.tvRating.setText("★ " + DemoData.ratingOf(namaProduk, productId));
+        holder.binding.tvStok.setText("● Stok: " + stok);
+        int tag;
+        if (namaProduk != null && namaProduk.contains("Vivobook")) tag = 0;
+        else if (namaProduk != null && namaProduk.contains("IdeaPad")) tag = 1;
+        else if (namaProduk != null && namaProduk.contains("MacBook")) tag = 2;
+        else tag = -1;
+        holder.binding.tvTag.setVisibility(tag < 0 ? android.view.View.GONE : android.view.View.VISIBLE);
+        holder.binding.tvTag.setBackgroundResource(tag == 0 ? R.drawable.dp_pill_blue
+                : tag == 1 ? R.drawable.dp_tag_amber : R.drawable.dp_tag_red);
+        holder.binding.tvTag.setText(tag == 0 ? "BARU" : tag == 1 ? "PROMO" : "HOT");
+        holder.binding.btnDetail.setOnClickListener(v -> {
+            if (listener != null) listener.onItemClick(item);
+        });
 
         boolean isAdmin = dbHelper.isAdmin(username);
         if (isAdmin){
@@ -119,10 +138,10 @@ public class ListProdukAdapter extends RecyclerView.Adapter<ListProdukAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        protected ItemListProdukBinding binding;
+        protected ItemProdukKatalogBinding binding;
 
 
-        public ViewHolder(@NonNull ItemListProdukBinding itemView) {
+        public ViewHolder(@NonNull ItemProdukKatalogBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
         }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomNav"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/dp_nav_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/tabBeranda"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/tabIcon1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/tabLabel1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/dp_beranda"
+            android:textColor="@color/dp_muted"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabKatalog"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/tabIcon2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/tabLabel2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/dp_katalog"
+            android:textColor="@color/dp_muted"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabKeranjang"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="18dp"
+            android:layout_height="18dp">
+
+            <View
+                android:id="@+id/tabIcon3"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:background="@android:color/transparent" />
+
+            <TextView
+                android:id="@+id/cartBadgeText"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="top|end"
+                android:background="@drawable/dp_tag_amber"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/dp_bg"
+                android:textSize="8sp" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tabLabel3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/dp_keranjang"
+            android:textColor="@color/dp_muted"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tabProfil"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/tabIcon4"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@android:color/transparent" />
+
+        <TextView
+            android:id="@+id/tabLabel4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="@string/dp_profil"
+            android:textColor="@color/dp_muted"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</LinearLayout>

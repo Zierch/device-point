@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Warna kanvas FigCraft: Obsidian Navy + Electric Cobalt. Dipakai layout desain baru. -->
+    <color name="dp_bg">#0B0F1A</color>
+    <color name="dp_nav">#0E1422</color>
+    <color name="dp_surface">#141B2B</color>
+    <color name="dp_surface_2">#1C2538</color>
+    <color name="dp_glow">#162847</color>
+    <color name="dp_border">#263149</color>
+    <color name="dp_primary">#4E8CFF</color>
+    <color name="dp_text">#F4F7FF</color>
+    <color name="dp_muted">#8895B0</color>
+    <color name="dp_green">#34D399</color>
+    <color name="dp_green_bg">#102C23</color>
+    <color name="dp_amber">#FFB454</color>
+    <color name="dp_amber_bg">#2D2415</color>
+    <color name="dp_red">#F87171</color>
+    <color name="dp_red_bg">#1F1418</color>
+    <color name="dp_red_border">#421A22</color>
+    <color name="dp_blue_bg">#132038</color>
+    <color name="dp_blue_card">#243350</color>
+    <color name="dp_indicator">#3A4560</color>
+    <color name="dp_laptop">#2C3954</color>
+    <color name="dp_laptop_inner">#182438</color>
+</resources>

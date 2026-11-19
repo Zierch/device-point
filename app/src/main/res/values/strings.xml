@@ -18,10 +18,10 @@
     <string name="produk_kosong">Tidak ada produk yang cocok</string>
 
     <array name="urutan_produk">
-        <item>Terbaru</item>
-        <item>Nama A-Z</item>
-        <item>Termurah</item>
-        <item>Termahal</item>
+        <item>Terbaru ▼</item>
+        <item>Nama A-Z ▼</item>
+        <item>Termurah ▼</item>
+        <item>Termahal ▼</item>
     </array>
     <string name="cd_foto_produk">Foto produk</string>
     <string name="cd_ubah_produk">Ubah produk</string>
@@ -40,4 +40,71 @@
     <string name="cd_kembali">Kembali</string>
     <string name="tombol_contact">Kontak</string>
     <string name="splash_tagline">Katalog Produk</string>
+
+    <!-- Desain FigCraft -->
+    <string name="dp_onboarding_tagline">Semua perangkat, satu tempat.</string>
+    <string name="dp_onboarding_desc">Jelajahi katalog laptop dan gadget favoritmu. Simpan yang kamu suka, lalu hubungi penjual dengan mudah.</string>
+    <string name="dp_mulai">Mulai Jelajahi</string>
+    <string name="dp_lewati">Lewati</string>
+    <string name="dp_sapaan">Selamat datang 👋</string>
+    <string name="dp_cari_beranda">Cari laptop, merek, spesifikasi...</string>
+    <string name="dp_cari_katalog">Cari laptop, merek, prosesor...</string>
+    <string name="dp_promo_badge">🔥 PROMO TERBARU</string>
+    <string name="dp_promo_judul">Diskon s.d Rp 1,5 Juta</string>
+    <string name="dp_promo_sub">Khusus seri ASUS &amp; Lenovo</string>
+    <string name="dp_cek_promo">Cek Promo</string>
+    <string name="dp_semua">Semua</string>
+    <string name="dp_chip_laptop">💻 Laptop</string>
+    <string name="dp_chip_pc">🖥️ PC</string>
+    <string name="dp_chip_aksesoris">🖱️ Aksesoris</string>
+    <string name="dp_produk_pilihan">Produk Pilihan</string>
+    <string name="dp_lihat_semua">Lihat Semua →</string>
+    <string name="dp_katalog_judul">Katalog Laptop</string>
+    <string name="dp_produk_tersedia">Produk Tersedia</string>
+    <string name="dp_lihat_detail">Lihat Detail</string>
+    <string name="cd_favorit">Favorit</string>
+    <string name="dp_detail_judul">Detail Perangkat</string>
+    <string name="dp_garansi_badge">🛡️ Garansi 12 Bulan</string>
+    <string name="dp_informasi_perangkat">Informasi Perangkat</string>
+    <string name="dp_deskripsi">Deskripsi</string>
+    <string name="dp_tambah_keranjang">+ Tambah ke Keranjang</string>
+    <string name="dp_keranjang_judul">Keranjang Belanja</string>
+    <string name="dp_keranjang_sub">item terpilih untuk dipesan</string>
+    <string name="dp_pilih_semua">Pilih Semua</string>
+    <string name="dp_hapus">Hapus</string>
+    <string name="dp_voucher">DEVICEPOINT2026</string>
+    <string name="dp_terpasang">Terpasang</string>
+    <string name="dp_ringkasan">Ringkasan Pembelian</string>
+    <string name="dp_subtotal">Subtotal</string>
+    <string name="dp_diskon_voucher">Diskon Voucher</string>
+    <string name="dp_biaya_layanan">Biaya Layanan &amp; Admin</string>
+    <string name="dp_gratis">Gratis</string>
+    <string name="dp_total_estimasi">Total Estimasi</string>
+    <string name="dp_total_pembayaran">Total Pembayaran</string>
+    <string name="dp_pesan">Pesan Sekarang</string>
+    <string name="dp_profil_judul">Profil Akun</string>
+    <string name="dp_admin">👑 ADMINISTRATOR</string>
+    <string name="dp_total_produk">Total Produk</string>
+    <string name="dp_favorit">Favorit</string>
+    <string name="dp_restock">Restock Segera</string>
+    <string name="dp_manajemen">Manajemen Katalog</string>
+    <string name="dp_tambah_produk">Tambah Produk Baru</string>
+    <string name="dp_tambah_produk_sub">Unggah foto &amp; spesifikasi perangkat</string>
+    <string name="dp_kelola_stok">Kelola Stok &amp; Harga</string>
+    <string name="dp_kelola_stok_sub">Pembaruan cepat inventaris</string>
+    <string name="dp_sistem">Sistem &amp; Aplikasi</string>
+    <string name="dp_tema_gelap">Tema Gelap</string>
+    <string name="dp_tema_gelap_sub">Tampilan malam aktif</string>
+    <string name="dp_database">Database Lokal (SQLite)</string>
+    <string name="dp_database_sub">Penyimpanan offline aman</string>
+    <string name="dp_aktif">● Aktif</string>
+    <string name="dp_tentang">Tentang Device Point</string>
+    <string name="dp_tentang_sub">Versi 1.2.0 · Siap Rilis</string>
+    <string name="dp_logout">Keluar dari Akun Admin</string>
+    <string name="dp_belum_tersedia">Fitur ini belum tersedia</string>
+    <string name="dp_keranjang_kosong">Belum ada produk di keranjang</string>
+    <string name="dp_beranda">Beranda</string>
+    <string name="dp_katalog">Katalog</string>
+    <string name="dp_keranjang">Keranjang</string>
+    <string name="dp_profil">Profil</string>
 </resources>

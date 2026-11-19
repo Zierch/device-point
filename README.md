@@ -128,23 +128,17 @@ gradlew.bat test        # Windows
 
 ## Screenshot
 
-Diambil dari emulator Pixel 7 (Android 16), tema gelap:
+Diambil dari emulator Pixel 7 (Android 16), tema gelap sesuai 6 frame desain FigCraft:
 
-| Login | Kategori | Daftar produk |
+| Onboarding | Beranda | Katalog |
 | --- | --- | --- |
-| <img src="docs/screenshots/login.png" width="240" alt="Login"> | <img src="docs/screenshots/kategori.png" width="240" alt="Kategori"> | <img src="docs/screenshots/daftar-produk.png" width="240" alt="Daftar produk"> |
+| <img src="docs/screenshots/onboarding.png" width="240" alt="Onboarding"> | <img src="docs/screenshots/beranda.png" width="240" alt="Beranda"> | <img src="docs/screenshots/katalog.png" width="240" alt="Katalog"> |
 
-| Detail produk | Beranda admin | Form produk |
+| Detail produk | Keranjang | Profil |
 | --- | --- | --- |
-| <img src="docs/screenshots/detail.png" width="240" alt="Detail produk"> | <img src="docs/screenshots/admin-beranda.png" width="240" alt="Beranda admin"> | <img src="docs/screenshots/admin-form.png" width="240" alt="Form produk"> |
+| <img src="docs/screenshots/detail-produk.png" width="240" alt="Detail produk"> | <img src="docs/screenshots/keranjang.png" width="240" alt="Keranjang"> | <img src="docs/screenshots/profil.png" width="240" alt="Profil"> |
 
-Tema terang mengikuti pengaturan sistem:
-
-| Kategori | Daftar produk | Detail produk |
-| --- | --- | --- |
-| <img src="docs/screenshots/kategori-terang.png" width="240" alt="Kategori, terang"> | <img src="docs/screenshots/daftar-produk-terang.png" width="240" alt="Daftar produk, terang"> | <img src="docs/screenshots/detail-terang.png" width="240" alt="Detail produk, terang"> |
-
-_Produk pada tangkapan layar adalah data contoh yang dimasukkan lewat halaman admin._
+_Tema terang mengikuti pengaturan sistem. Produk pada tangkapan layar adalah data contoh dari `DemoData` yang dipakai saat database kosong._
 
 ## License
 

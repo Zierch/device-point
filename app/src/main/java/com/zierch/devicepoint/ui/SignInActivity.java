@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,7 +19,7 @@ import com.zierch.devicepoint.SystemBars;
 
 public class SignInActivity extends AppCompatActivity {
     protected ActivitySignInBinding binding;
-    private boolean backPressedOnce = false;
+    private long firstBackAt;
     private Toast backToast;
     private SQLiteHelper dbHelper;
     private String username, password;
@@ -37,16 +37,13 @@ public class SignInActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if (backPressedOnce) {
+                if (SystemClock.elapsedRealtime() - firstBackAt < 2000) {
                     if (backToast != null) backToast.cancel();
                     finish();
                 } else {
-                    backPressedOnce = true;
+                    firstBackAt = SystemClock.elapsedRealtime();
                     backToast = Toast.makeText(SignInActivity.this, "Press back again to exit", Toast.LENGTH_SHORT);
                     backToast.show();
-
-                    // Reset flag after 2 seconds
-                    new Handler().postDelayed(() -> backPressedOnce = false, 2000);
                 }
             }
         });
@@ -127,7 +124,7 @@ public class SignInActivity extends AppCompatActivity {
         Toast.makeText(SignInActivity.this, "Login Berhasil", Toast.LENGTH_SHORT).show();
         Intent intent = isAdmin
                 ? new Intent(SignInActivity.this, HomeActivity.class)
-                : new Intent(SignInActivity.this, KategoriActivity.class);
+                : new Intent(SignInActivity.this, BerandaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();

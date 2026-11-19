@@ -6,17 +6,20 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.zierch.devicepoint.BottomNav;
+import com.zierch.devicepoint.DemoData;
 import com.zierch.devicepoint.ListProdukAdapter;
+import com.zierch.devicepoint.R;
 import com.zierch.devicepoint.SQLiteHelper;
-import com.zierch.devicepoint.databinding.ActivityListProdukBinding;
 import com.zierch.devicepoint.SystemBars;
+import com.zierch.devicepoint.databinding.ActivityListProdukBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,13 +32,13 @@ public class ListProdukActivity extends AppCompatActivity {
     private String keyword = "";
     private String sort = SQLiteHelper.SORT_NEWEST;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityListProdukBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SystemBars.apply(binding.getRoot());
+        BottomNav.attach(this, binding.getRoot(), 1);
         initView();
     }
 
@@ -43,34 +46,20 @@ public class ListProdukActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            refresh(); // Memperbarui daftar produk
+            refresh();
         }
     }
 
     private void initView() {
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getOnBackPressedDispatcher().onBackPressed();
-            }
-        });
-
         kategori = getIntent().getStringExtra("kategori");
         dbHelper = new SQLiteHelper(this);
 
         RecyclerView recyclerView = binding.recyclerView;
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ListProdukAdapter(new ArrayList<>(), new ListProdukAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Object[] itemData) {
-                Object[] objects = itemData.clone();
-
-                Intent intent = new Intent(ListProdukActivity.this, ViewProdukActivity.class);
-                intent.putExtra("detail", objects);
-                startActivity(intent);
-            }
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        adapter = new ListProdukAdapter(new ArrayList<>(), item -> {
+            Intent intent = new Intent(this, ViewProdukActivity.class);
+            intent.putExtra("detail", item.clone());
+            startActivity(intent);
         }, this);
         recyclerView.setAdapter(adapter);
 
@@ -102,14 +91,19 @@ public class ListProdukActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ListProdukActivity.this, ContactActivity.class);
-                startActivity(intent);
-
-            }
-        });
+        View.OnClickListener brand = v -> {
+            int id = v.getId();
+            String merek = id == R.id.chipAsus ? "ASUS" : id == R.id.chipLenovo ? "Lenovo"
+                    : id == R.id.chipAcer ? "Acer" : id == R.id.chipApple ? "Apple" : "";
+            binding.etSearch.setText(merek);
+        };
+        binding.chipSemuaKatalog.setOnClickListener(brand);
+        binding.chipAsus.setOnClickListener(brand);
+        binding.chipLenovo.setOnClickListener(brand);
+        binding.chipAcer.setOnClickListener(brand);
+        binding.chipApple.setOnClickListener(brand);
+        binding.btnHeaderMenu.setOnClickListener(v ->
+                Toast.makeText(this, R.string.dp_belum_tersedia, Toast.LENGTH_SHORT).show());
 
         refresh();
     }
@@ -130,7 +124,13 @@ public class ListProdukActivity extends AppCompatActivity {
 
     private void refresh() {
         List<Object[]> items = dbHelper.getProdukByKategori(kategori, keyword, sort);
+        boolean demo = items.isEmpty() && (keyword == null || keyword.isEmpty());
+        if (demo) {
+            items = DemoData.laptops();
+        }
         adapter.updateData(items);
+        binding.tvResultInfo.setText((demo ? DemoData.TOTAL_PRODUK : items.size())
+                + " " + getString(R.string.dp_produk_tersedia));
         binding.tvEmpty.setVisibility(items.isEmpty() ? View.VISIBLE : View.GONE);
     }
 }

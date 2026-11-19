@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,7 +20,7 @@ import com.zierch.devicepoint.SystemBars;
 
 public class KategoriActivity extends AppCompatActivity {
     protected ActivityKategoriBinding binding;
-    private boolean backPressedOnce = false;
+    private long firstBackAt;
     private Toast backToast;
 
     private SharedPreferences sharedPreferences;
@@ -54,16 +54,13 @@ public class KategoriActivity extends AppCompatActivity {
             getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
                 @Override
                 public void handleOnBackPressed() {
-                    if (backPressedOnce) {
+                    if (SystemClock.elapsedRealtime() - firstBackAt < 2000) {
                         if (backToast != null) backToast.cancel();
                         finish();
                     } else {
-                        backPressedOnce = true;
+                        firstBackAt = SystemClock.elapsedRealtime();
                         backToast = Toast.makeText(KategoriActivity.this, "Press back again to exit", Toast.LENGTH_SHORT);
                         backToast.show();
-
-                        // Reset flag after 2 seconds
-                        new Handler().postDelayed(() -> backPressedOnce = false, 2000);
                     }
                 }
             });

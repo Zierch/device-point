@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/dp_card"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:background="@drawable/dp_card_solid">
+
+        <ImageView
+            android:id="@+id/imageProduk_1"
+            android:layout_width="60dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:contentDescription="@string/cd_foto_produk"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dp_laptop" />
+
+        <View
+            android:layout_width="76dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="76dp"
+            android:background="@color/dp_laptop" />
+
+        <TextView
+            android:id="@+id/tvTag"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:layout_gravity="top|start"
+            android:layout_margin="8dp"
+            android:background="@drawable/dp_pill_blue"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="BARU"
+            android:textColor="@color/dp_bg"
+            android:textSize="9sp" />
+
+        <FrameLayout
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="8dp"
+            android:background="@drawable/dp_circle_border">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/cd_favorit"
+                android:src="@drawable/dp_ic_heart"
+                app:tint="@color/dp_muted" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvMerek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/dp_muted"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/namaProduk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:maxLines="1"
+        android:textColor="@color/dp_text"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/hargaProduk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/dp_primary"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/dp_amber"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/tvStok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/dp_green"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnDetail"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/dp_card_solid"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center"
+        android:text="@string/dp_lihat_detail"
+        android:textColor="@color/dp_text"
+        android:textSize="10sp" />
+
+    <LinearLayout
+        android:id="@+id/aksi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/cd_ubah_produk"
+            android:src="@drawable/ic_edit"
+            app:tint="@color/dp_primary" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/cd_hapus_produk"
+            android:src="@drawable/ic_delete"
+            app:tint="@color/dp_red" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,91 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dp_bg"
     android:orientation="vertical"
     tools:context=".ui.ListProdukActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/md_theme_primaryContainer"
-        app:navigationIcon="@drawable/ic_arrow_left"
-        app:title="List Produk"
-        app:titleTextAppearance="@style/NavTitle" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingStart="20dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="20dp">
-
-        <EditText
-            android:id="@+id/etSearch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/box_input_text"
-            android:hint="@string/cari_produk"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:maxLines="1"
-            android:padding="12dp"
-            android:textSize="14sp" />
-
-        <Spinner
-            android:id="@+id/spinnerSort"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:entries="@array/urutan_produk" />
-    </LinearLayout>
-
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp" />
-
-        <TextView
-            android:id="@+id/tvEmpty"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/produk_kosong"
-            android:textSize="16sp"
-            android:visibility="gone" />
-    </FrameLayout>
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="32dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="16dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/md_theme_primaryContainer"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnContact"
-            style="@style/TextSemiBold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/box_button_contact"
-            android:paddingLeft="60dp"
-            android:paddingRight="60dp"
-            android:text="@string/tombol_contact"
-            android:textSize="20dp" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="@string/dp_katalog_judul"
+                    android:textColor="@color/dp_text"
+                    android:textSize="20sp" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/btnHeaderMenu"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:background="@drawable/dp_card_12"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="⌄"
+                    android:textColor="@color/dp_text"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/dp_card_14"
+                android:drawableStart="@drawable/dp_search"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/poppins_medium"
+                android:hint="@string/dp_cari_katalog"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/dp_text"
+                android:textColorHint="@color/dp_muted"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/chipSemuaKatalog"
+                    android:layout_width="68dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/dp_pill_blue"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:gravity="center"
+                    android:text="@string/dp_semua"
+                    android:textColor="@color/dp_bg"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/chipAsus"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/dp_pill_surface"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="ASUS"
+                    android:textColor="@color/dp_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/chipLenovo"
+                    android:layout_width="72dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/dp_pill_surface"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="Lenovo"
+                    android:textColor="@color/dp_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/chipAcer"
+                    android:layout_width="60dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/dp_pill_surface"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="Acer"
+                    android:textColor="@color/dp_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/chipApple"
+                    android:layout_width="64dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/dp_pill_surface"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="Apple"
+                    android:textColor="@color/dp_text"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvResultInfo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/dp_produk_tersedia"
+                    android:textColor="@color/dp_muted"
+                    android:textSize="12sp" />
+
+                <Spinner
+                    android:id="@+id/spinnerSort"
+                    android:layout_width="114dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/dp_card_12"
+                    android:entries="@array/urutan_produk"
+                    android:popupBackground="@color/dp_surface"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tvEmpty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/produk_kosong"
+                    android:textColor="@color/dp_muted"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/bottomNavView"
+        layout="@layout/view_bottom_nav" />
 
 </LinearLayout>

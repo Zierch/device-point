@@ -2,23 +2,25 @@ package com.zierch.devicepoint.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.zierch.devicepoint.R;
+import com.zierch.devicepoint.CartStore;
+import com.zierch.devicepoint.DemoData;
 import com.zierch.devicepoint.Helper;
-import com.zierch.devicepoint.databinding.ActivityViewProdukBinding;
+import com.zierch.devicepoint.R;
 import com.zierch.devicepoint.SystemBars;
+import com.zierch.devicepoint.databinding.ActivityViewProdukBinding;
 
 import java.io.File;
 
+/** Detail perangkat sesuai frame 04 desain FigCraft. */
 public class ViewProdukActivity extends AppCompatActivity {
-    protected ActivityViewProdukBinding binding;
 
+    private ActivityViewProdukBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,47 +28,54 @@ public class ViewProdukActivity extends AppCompatActivity {
         binding = ActivityViewProdukBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         SystemBars.apply(binding.getRoot());
-        initView();
-    }
-
-    private void initView() {
-        Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getOnBackPressedDispatcher().onBackPressed();
-            }
-        });
 
         Object[] objects = (Object[]) getIntent().getSerializableExtra("detail");
+        if (objects == null || objects.length < 8) {
+            finish();
+            return;
+        }
+
+        int id = (int) objects[0];
         String imagePath = (String) objects[1];
         String namaProduk = (String) objects[2];
         int hargaProduk = (int) objects[3];
-        String merek = (String) objects[4];
-        String garansi = (String) objects[5];
+        String merek = objects[4] == null ? "" : (String) objects[4];
         int stok = (int) objects[6];
-        String deskripsi = (String) objects[7];
+        String deskripsi = objects[7] == null ? "" : (String) objects[7];
 
-        Glide.with(this).load(new File(imagePath))
-                .placeholder(R.drawable.img_product_placeholder)
-                .error(R.drawable.img_product_placeholder)
-                .into(binding.image);
+        if (imagePath != null && !imagePath.isEmpty()) {
+            Glide.with(this).load(new File(imagePath))
+                    .placeholder(R.drawable.img_product_placeholder)
+                    .error(R.drawable.img_product_placeholder)
+                    .into(binding.image);
+        }
         binding.image.setContentDescription(namaProduk);
-        binding.hargaProduk.setText(Helper.currencyID(hargaProduk));
         binding.namaProduk.setText(namaProduk);
-        binding.isi1.setText(merek);
-        binding.isiGaransi.setText(garansi);
-        binding.isiStok.setText(String.valueOf(stok));
+        binding.hargaProduk.setText("Rp " + Helper.currencyID(hargaProduk));
+        binding.isi1.setText(DemoData.merekDetail(namaProduk));
+        binding.isiGaransi.setText(DemoData.osOf(namaProduk));
+        binding.isiStok.setText("● Stok: " + stok + " Unit");
         binding.deskripsi.setText(deskripsi);
 
-        binding.btnContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ViewProdukActivity.this, ContactActivity.class);
-                startActivity(intent);
+        String spec = merek + " " + deskripsi;
+        binding.specProsesor.setText(merek.contains("Ryzen") ? "Ryzen 5"
+                : merek.contains("Core i5") ? "Core i5"
+                : merek.contains("Core i3") ? "Core i3" : "Prosesor");
+        binding.specRam.setText(spec.contains("16GB") || spec.contains("16 GB") ? "16 GB" : "8 GB");
+        binding.specStorage.setText(spec.contains("1TB") || spec.contains("1 TB") ? "1 TB" : "512 GB");
 
-            }
+        binding.btnBack.setOnClickListener(v -> finish());
+        binding.btnChat.setOnClickListener(v ->
+                startActivity(new Intent(this, ContactActivity.class)));
+        binding.btnShare.setOnClickListener(v ->
+                Toast.makeText(this, R.string.dp_belum_tersedia, Toast.LENGTH_SHORT).show());
+        binding.btnFav.setOnClickListener(v ->
+                Toast.makeText(this, R.string.dp_belum_tersedia, Toast.LENGTH_SHORT).show());
+        binding.btnAddCart.setOnClickListener(v -> {
+            CartStore.add(this, id, namaProduk, hargaProduk,
+                    DemoData.cartSpec(namaProduk, merek));
+            Toast.makeText(this, "Ditambahkan ke keranjang", Toast.LENGTH_SHORT).show();
+            finish();
         });
     }
 }

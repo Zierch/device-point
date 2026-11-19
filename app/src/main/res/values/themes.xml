@@ -79,5 +79,18 @@
         <item name="android:layout_marginTop">10dp</item>
     </style>
 
+    <!-- Layar hasil desain FigCraft memakai kanvas gelap tetap, terlepas dari mode sistem. -->
+    <style name="Theme.DevicePoint.Design" parent="Theme.DevicePoint">
+        <item name="android:colorBackground">@color/dp_bg</item>
+        <item name="colorSurface">@color/dp_surface</item>
+        <item name="android:statusBarColor">@color/dp_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/dp_nav</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+        <item name="android:textColorPrimary">@color/dp_text</item>
+        <item name="android:textColorSecondary">@color/dp_muted</item>
+        <item name="android:textColorHint">@color/dp_muted</item>
+    </style>
+
     <style name="Theme.DevicePoint" parent="Base.Theme.DevicePoint" />
 </resources>
